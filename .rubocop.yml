@@ -1,0 +1,13 @@
+inherit_gem:
+  prettier: rubocop.yml
+  rubocop-shopify: rubocop.yml
+
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-graphql
+  - rubocop-performance
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1.3
