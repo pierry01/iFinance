@@ -36,6 +36,7 @@ group :development do
   gem 'rubocop-rspec', '~> 2.18.1'
   gem 'rubocop-shopify', '~> 2.11.1'
   gem 'solargraph', '~> 0.48.0'
+  gem 'solargraph-rails', '~> 1.1.0'
   gem 'web-console', '~> 4.2.0'
 end
 

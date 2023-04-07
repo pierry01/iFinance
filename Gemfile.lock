@@ -260,6 +260,9 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
+    solargraph-rails (1.1.0)
+      activesupport
+      solargraph
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     syntax_tree (5.2.0)
@@ -323,6 +326,7 @@ DEPENDENCIES
   rubocop-shopify (~> 2.11.1)
   shoulda-matchers (~> 5.3.0)
   solargraph (~> 0.48.0)
+  solargraph-rails (~> 1.1.0)
   stimulus-rails (~> 1.2.1)
   turbo-rails (~> 1.4.0)
   tzinfo-data
