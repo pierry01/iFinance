@@ -11,6 +11,7 @@ gem 'pg', '~> 1.4.6'
 gem 'puma', '~> 5.6.5'
 gem 'rails', '~> 7.0.4'
 gem 'redis', '~> 4.8.1'
+gem 'graphql', '~> 2.0.12'
 
 gem 'cssbundling-rails', '~> 1.1.2'
 gem 'jsbundling-rails', '~> 1.1.1'
@@ -41,3 +42,4 @@ group :development do
 end
 
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem "graphiql-rails", group: :development
