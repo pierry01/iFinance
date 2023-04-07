@@ -3,12 +3,17 @@
   "private": true,
   "eslint": "./node_modules/.bin/eslint",
   "dependencies": {
+    "@apollo/client": "3.7.11",
     "@hotwired/stimulus": "3.2.1",
     "@hotwired/turbo-rails": "7.3.0",
     "@tailwindcss/forms": "0.5.3",
     "@tailwindcss/typography": "0.5.9",
+    "apollo-link": "1.2.14",
     "autoprefixer": "10.4.14",
     "esbuild": "0.16.17",
+    "graphql": "16.6.0",
+    "graphql-ruby-client": "1.11.7",
+    "graphql-tag": "2.12.6",
     "postcss": "8.4.21",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-import": "15.1.0",
@@ -20,7 +25,8 @@
   "scripts": {
     "build": "node esbuild.config.js",
     "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
-    "lint": "yarn run eslint --ext .js --ext .jsx --ext .gql --ext .graphql app/javascript"
+    "lint": "yarn run eslint --ext .js --ext .jsx --ext .gql --ext .graphql app/javascript",
+    "graphql:dump_schema": "rails graphql:dump_schema"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "3.2.2",

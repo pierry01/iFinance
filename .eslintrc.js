@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 module.exports = {
-  extend: [
+  extends: [
     "airbnb",
     "prettier",
     "eslint:recommended",
@@ -34,12 +34,12 @@ module.exports = {
   },
 
   rules: {
-    "import/no-dynamic-require": [0],
     "react/no-danger": [0],
-    "prettier/prettier": "error",
     "import/no-unresolved": [0],
-    "react/jsx-props-no-spreading": "off",
+    "prettier/prettier": "error",
     "no-underscore-dangle": "off",
+    "import/no-dynamic-require": [0],
+    "react/jsx-props-no-spreading": "off",
     "graphql/template-strings": [
       "error",
       {
