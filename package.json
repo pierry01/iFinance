@@ -1,12 +1,17 @@
 {
-  "name": "app",
+  "name": "i-finance",
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.17.15",
     "postcss": "^8.4.21",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-nested": "^6.0.1",
     "tailwindcss": "^3.3.1"
   },
   "scripts": {
