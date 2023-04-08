@@ -34,12 +34,13 @@ module.exports = {
   },
 
   rules: {
-    "react/no-danger": [0],
-    "import/no-unresolved": [0],
+    "react/no-danger": "off",
     "prettier/prettier": "error",
+    "import/no-unresolved": "off",
     "no-underscore-dangle": "off",
-    "import/no-dynamic-require": [0],
+    "import/no-dynamic-require": "off",
     "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off",
     "graphql/template-strings": [
       "error",
       {

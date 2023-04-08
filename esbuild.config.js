@@ -1,28 +1,26 @@
 #!/usr/bin/env node
 
 const path = require("path");
+const http = require("http");
 const esbuild = require("esbuild");
-const entryPoints = ["application.js"];
+const chokidar = require("chokidar");
 
 const watchDirectories = [
-  "./app/javascript/**/*.js",
-  "./app/views/**/*.html.erb",
-  "./app/assets/stylesheets/*.css",
-  "./app/assets/stylesheets/*.scss",
+  "./app/views/**/*",
+  "./app/javascript/**/*",
+  "./app/assets/stylesheets/*",
 ];
 
 const config = {
-  entryPoints,
   bundle: true,
   sourcemap: true,
+  entryPoints: ["application.js"],
   outdir: path.join(process.cwd(), "app/assets/builds"),
   absWorkingDir: path.join(process.cwd(), "app/javascript"),
 };
 
 async function rebuild() {
   const clients = [];
-  const http = require("http");
-  const chokidar = require("chokidar");
 
   http
     .createServer((_, res) =>
@@ -45,8 +43,8 @@ async function rebuild() {
     },
   });
 
-  chokidar.watch(watchDirectories).on("all", (_, path) => {
-    if (path.includes("javascript")) result.rebuild();
+  chokidar.watch(watchDirectories).on("all", (_, thePath) => {
+    if (thePath.includes("javascript")) result.rebuild();
 
     clients.forEach((res) => res.write("data: update\n\n"));
     clients.length = 0;
@@ -58,6 +56,6 @@ else
   esbuild
     .build({
       ...config,
-      minify: process.env.RAILS_ENV == "production",
+      minify: process.env.RAILS_ENV === "production",
     })
     .catch(() => process.exit(1));

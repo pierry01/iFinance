@@ -6,7 +6,7 @@ module Queries
 
     type Types::UserType, null: false
 
-    argument :id, String, "User ID", required: true
+    argument :id, ID, "User ID", required: true
 
     def resolve(id:)
       User.find(id)

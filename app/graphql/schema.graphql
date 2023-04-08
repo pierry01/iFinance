@@ -51,7 +51,7 @@ type Query {
     """
     User ID
     """
-    id: String!
+    id: ID!
   ): User!
 }
 
