@@ -14,4 +14,10 @@ Devise.setup do |config|
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
   config.reset_password_within = 6.hours
   config.sign_out_via = :delete
+
+  config.jwt do |jwt|
+    jwt.expiration_time = 7.days
+    jwt.request_formats = { user: %i[json] }
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key
+  end
 end

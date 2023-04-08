@@ -1,3 +1,38 @@
+"""
+Types for BankAccount
+"""
+type BankAccount {
+  """
+  Valor
+  """
+  amount: Float!
+
+  """
+  Descrição
+  """
+  description: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Nome
+  """
+  name: String!
+
+  """
+  Lista de transações
+  """
+  transactions: [Transaction!]!
+}
+
+"""
+An ISO 8601-encoded datetime
+"""
+scalar ISO8601DateTime
+
 type Mutation {
   """
   An example field added by the generator
@@ -5,9 +40,97 @@ type Mutation {
   testField: String!
 }
 
+"""
+Query ROOT
+"""
 type Query {
   """
-  An example field added by the generator
+  GET User by ID
   """
-  testField: String!
+  userQuery(
+    """
+    User ID
+    """
+    id: String!
+  ): User!
+}
+
+"""
+Types for Transaction
+"""
+type Transaction {
+  """
+  Valor
+  """
+  amount: Float!
+
+  """
+  Conta bancária
+  """
+  bankAccount: BankAccount!
+
+  """
+  Descrição
+  """
+  description: String!
+
+  """
+  Finalizada?
+  """
+  done: Boolean!
+
+  """
+  Data de vencimento
+  """
+  dueDate: ISO8601DateTime
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Tipo
+  """
+  kind: String!
+
+  """
+  Nome
+  """
+  name: String!
+}
+
+"""
+Types for User
+"""
+type User {
+  """
+  Lista de contas bancárias
+  """
+  bankAccounts: [BankAccount!]!
+
+  """
+  E-mail
+  """
+  email: String!
+
+  """
+  Primeiro nome
+  """
+  firstName: String!
+
+  """
+  Nome completo
+  """
+  fullName: String!
+
+  """
+  ID
+  """
+  id: ID!
+
+  """
+  Último nome
+  """
+  lastName: String!
 }

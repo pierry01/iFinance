@@ -1,14 +1,21 @@
 # frozen_string_literal: true
 
 module Types
-  class BankAccount < Types::BaseObject
+  class BankAccountType < Types::BaseObject
+    class << self
+      def authorized?(bank_account, _context)
+        super && bank_account.present?
+      end
+    end
+
     description "Types for BankAccount"
 
     field :amount, Float, "Valor", null: false
     field :description, String, "Descrição", null: false
+    field :id, ID, "ID", null: false
     field :name, String, "Nome", null: false
     field :transactions,
-          [Types::Transaction],
+          [Types::TransactionType],
           "Lista de transações",
           null: false
   end

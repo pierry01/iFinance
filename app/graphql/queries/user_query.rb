@@ -4,7 +4,7 @@ module Queries
   class UserQuery < BaseQuery
     description "GET User by ID"
 
-    type Types::User, null: false
+    type Types::UserType, null: false
 
     argument :id, String, "User ID", required: true
 

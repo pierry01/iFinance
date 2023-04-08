@@ -8,7 +8,9 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :trackable
+         :trackable,
+         :jwt_authenticatable,
+         jwt_revocation_strategy: self
 
   has_many :bank_accounts, dependent: :destroy
   has_many :transactions, through: :bank_accounts
