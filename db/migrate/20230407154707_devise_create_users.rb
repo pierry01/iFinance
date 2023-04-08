@@ -11,6 +11,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :first_name, null: false, default: ""
       t.string :last_name, null: false, default: ""
       t.string :jti, null: false, default: ""
+      t.virtual :full_name,
+                type: :string,
+                stored: true,
+                as: "first_name || ' ' || last_name"
 
       ## Recoverable
       t.string :reset_password_token

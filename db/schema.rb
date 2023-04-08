@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_185146) do
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "jti", default: "", null: false
+    t.virtual "full_name", type: :string, as: "(((first_name)::text || ' '::text) || (last_name)::text)", stored: true
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
