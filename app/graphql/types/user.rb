@@ -12,9 +12,5 @@ module Types
     field :first_name, String, "Primeiro nome", null: false
     field :full_name, String, "Nome completo", null: false
     field :last_name, String, "Último nome", null: false
-    field :transactions,
-          [Types::Transaction],
-          "Lista de transações",
-          null: false
   end
 end

@@ -11,16 +11,20 @@ class IFinanceSchema < GraphQL::Schema
       super
     end
 
-    def resolve_type(abstract_type, obj, ctx)
+    def resolve_type(_abstract_type, _obj, _ctx)
       raise(GraphQL::RequiredImplementationMissingError)
     end
 
-    def id_from_object(object, type_definition, query_ctx)
+    def id_from_object(object, _type_definition, _query_ctx)
       object.to_gid_param
     end
 
-    def object_from_id(global_id, query_ctx)
+    def object_from_id(global_id, _query_ctx)
       GlobalID.find(global_id)
+    end
+
+    def unauthorized_object(_error)
+      raise(GraphQL::ExecutionError, "UNAUTHORIZED")
     end
   end
 end
