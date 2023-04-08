@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :transaction do
     bank_account
 
-    type { "type" }
+    kind { "kind" }
     name { "name" }
     done { false }
     amount { 1.5 }

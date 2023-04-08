@@ -16,9 +16,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_185146) do
   enable_extension "plpgsql"
 
   create_table "bank_accounts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "name"
-    t.float "amount"
-    t.text "description"
+    t.string "name", default: "", null: false
+    t.float "amount", default: 0.0, null: false
+    t.text "description", default: "", null: false
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,12 +26,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_185146) do
   end
 
   create_table "transactions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "type"
-    t.string "name"
-    t.boolean "done"
-    t.float "amount"
+    t.string "kind", default: "", null: false
+    t.string "name", default: "", null: false
+    t.boolean "done", default: false, null: false
+    t.float "amount", default: 0.0, null: false
     t.date "due_date"
-    t.text "description"
+    t.text "description", default: "", null: false
     t.uuid "bank_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
