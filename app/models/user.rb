@@ -10,7 +10,6 @@ class User < ApplicationRecord
          :validatable,
          :trackable
 
-  has_many :categories, dependent: :destroy
   has_many :bank_accounts, dependent: :destroy
   has_many :transactions, through: :bank_accounts
 end
