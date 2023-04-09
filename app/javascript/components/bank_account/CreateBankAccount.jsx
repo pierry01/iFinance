@@ -12,6 +12,12 @@ export const MUTATION = gql`
         name
         amount
         description
+        user {
+          id
+          bankAccounts {
+            id
+          }
+        }
       }
     }
   }

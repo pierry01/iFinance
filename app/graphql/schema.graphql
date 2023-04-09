@@ -26,6 +26,11 @@ type BankAccount {
   Lista de transações
   """
   transactions: [Transaction!]!
+
+  """
+  User
+  """
+  user: User!
 }
 
 """

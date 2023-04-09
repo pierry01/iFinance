@@ -18,5 +18,6 @@ module Types
           [Types::TransactionType],
           "Lista de transações",
           null: false
+    field :user, Types::UserType, "User", null: false
   end
 end

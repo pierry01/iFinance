@@ -47,7 +47,7 @@ function Home() {
 
       <ul className="mt-2">
         {user.bankAccounts.map((bankAccount) => (
-          <div key={bankAccount.id}>
+          <div key={bankAccount.id} className="my-2">
             <p>BankAccount</p>
             <p>{bankAccount.name}</p>
             <p>{bankAccount.amount}</p>
