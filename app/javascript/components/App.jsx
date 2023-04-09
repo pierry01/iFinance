@@ -2,13 +2,13 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
-import apolloClient from "../config/graphql";
+import graphql from "../config/graphql";
 import Routes from "./Routes";
 
 function App() {
   return (
     <StrictMode>
-      <ApolloProvider client={apolloClient}>
+      <ApolloProvider client={graphql}>
         <BrowserRouter>
           <Routes />
         </BrowserRouter>

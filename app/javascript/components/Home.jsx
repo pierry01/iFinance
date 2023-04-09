@@ -14,7 +14,7 @@ const QUERY = gql`
 
 function Home() {
   const { loading, data } = useQuery(QUERY, {
-    variables: { id: "38012d9f-d409-49c1-afaa-eefa0b158c23" },
+    variables: { id: "c5c294a4-4a56-441b-9aff-2b9ff7c3dfd8" },
   });
 
   if (loading) return "CARREGANDO...";

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root("components#index")
+  root("application#index")
 
   devise_for(:users)
 
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   constraints = ->(request) { !request.xhr? && request.format.html? }
 
-  get "/login", to: "components#index", constraints: constraints
+  get "/login", to: "application#index", constraints: constraints
 
   return unless Rails.env.development?
 
