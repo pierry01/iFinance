@@ -15,9 +15,9 @@ module Mutations
              required: true
 
     def resolve(bank_account_input_type:)
-      Mutations::CreateBankAccount.new(
+      Graphql::CreateBankAccount.new(
         context:,
-        bank_account_input_type:
+        bank_account_input_type: bank_account_input_type.to_h
       ).response
     end
 

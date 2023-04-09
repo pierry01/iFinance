@@ -16,6 +16,8 @@ class GraphqlController < ApplicationController
       params[:query],
       variables: prepare_variables(params[:variables]),
       context: {
+        current_user:,
+        ip_address: request.remote_ip
       },
       operation_name: params[:operationName]
     )
