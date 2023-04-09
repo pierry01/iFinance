@@ -1,14 +1,38 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
+
+export const MUTATION = gql`
+  mutation CreateBankAccount($bankAccountInput: BankAccountInput!) {
+    createBankAccount(input: { bankAccountInput: $bankAccountInput }) {
+      bankAccount {
+        id
+        name
+        amount
+        description
+      }
+    }
+  }
+`;
 
 function CreateBankAccount() {
-  const [form, setForm] = useState({ name: "", description: "", amount: 0 });
+  const navigate = useNavigate();
+  const [createBankAccount, { loading }] = useMutation(MUTATION);
+  const [form, setForm] = useState({ name: "", description: "", amount: 0.0 });
 
   return (
     <form
       className="grid grid-cols-1 gap-6"
-      onSubmit={(event) => {
+      onSubmit={async (event) => {
         event.preventDefault();
-        // ...
+
+        const { data } = await createBankAccount({
+          variables: { bankAccountInput: form },
+        });
+
+        if (data.createBankAccount) navigate("./..");
       }}
     >
       <label className="block" htmlFor="name">
@@ -29,7 +53,7 @@ function CreateBankAccount() {
           name="description"
           type="text"
           value={form.description}
-          placeholder="john@example.com"
+          placeholder="Description..."
           onChange={({ target }) =>
             setForm({ ...form, description: target.value })
           }
@@ -45,12 +69,18 @@ function CreateBankAccount() {
           step="0.01"
           value={form.amount}
           placeholder="john@example.com"
-          onChange={({ target }) => setForm({ ...form, amount: target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          onChange={({ target }) =>
+            setForm({ ...form, amount: parseFloat(target.value) })
+          }
         />
       </label>
 
-      <button type="submit" className="rounded-md bg-green-300 p-2">
+      <button
+        type="submit"
+        disabled={loading}
+        className="rounded-md bg-green-300 p-2"
+      >
         CRIAR CONTA BANCÁRIA
       </button>
     </form>
