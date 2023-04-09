@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mutations
-  class CreateBankAccount
+  class CreateBankAccount < Mutations::BaseMutation
     description "CREATE a BankAccount"
 
     field :bank_account,
@@ -15,7 +15,7 @@ module Mutations
              required: true
 
     def resolve(bank_account_input_type:)
-      Graphql::CreateBankAccount.new(
+      Mutations::CreateBankAccount.new(
         context:,
         bank_account_input_type:
       ).response

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Graphql
+module Mutations
   class CreateBankAccount
     def initialize(bank_account_input_type:, context:)
       @context = context
