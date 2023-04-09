@@ -9,23 +9,20 @@ module Mutations
           "Created BankAccount",
           null: false
 
-    argument :bank_account_input_type,
-             Types::BankAccountInputType,
+    argument :bank_account_input,
+             Types::BankAccountInput,
              "BankAccount Input Type",
              required: true
 
-    def resolve(bank_account_input_type:)
+    def resolve(bank_account_input:)
       Graphql::CreateBankAccount.new(
         context:,
-        bank_account_input_type: bank_account_input_type.to_h
+        bank_account_input: bank_account_input.to_h
       ).response
     end
 
-    def authorized?(bank_account_input_type:)
-      BankAccount.new(
-        **bank_account_input_type,
-        user: context[:current_user]
-      ).valid?
+    def authorized?(bank_account_input:)
+      BankAccount.new(**bank_account_input, user: context[:current_user]).valid?
     end
   end
 end

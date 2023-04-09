@@ -5,10 +5,10 @@ require "rails_helper"
 module Graphql
   RSpec.describe(CreateBankAccount, type: :service) do
     subject(:service) do
-      described_class.new(bank_account_input_type:, context:).response
+      described_class.new(bank_account_input:, context:).response
     end
 
-    let(:bank_account_input_type) do
+    let(:bank_account_input) do
       { amount:, description: "DESCRIPTION", name: "NAME" }
     end
 

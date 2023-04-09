@@ -31,7 +31,7 @@ module Mutations
       <<~GQL
         mutation {
           createBankAccount(input: {
-            bankAccountInputType: {
+            bankAccountInput: {
               amount: 1234.56,
               description: "Bank of America - LOREM IPSUM...",
               name: "ACCOUNT NAME"
