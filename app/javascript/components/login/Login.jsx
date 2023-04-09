@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import login from "../../config/login";
+import login from "config/login";
 
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });

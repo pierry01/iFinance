@@ -2,8 +2,8 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter } from "react-router-dom";
-import graphql from "../config/graphql";
-import Routes from "./Routes";
+import graphql from "config/graphql";
+import Routes from "components/Routes";
 
 function App() {
   return (

@@ -26,8 +26,8 @@
     "tailwindcss": "3.3.1"
   },
   "scripts": {
-    "build": "NODE_PATH=app/javascript/components esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=$CDN_URL_FULL/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19 --minify",
-    "build:dev": "NODE_PATH=app/javascript/components esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19",
+    "build": "NODE_PATH=app/javascript esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=$CDN_URL_FULL/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19 --minify",
+    "build:dev": "NODE_PATH=app/javascript esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "lint": "yarn run eslint --ext .js --ext .jsx --ext .gql --ext .graphql app/javascript",
     "graphql:dump_schema": "rails graphql:dump_schema"

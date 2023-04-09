@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./Home";
-import NetworkError from "./NetworkError";
-import NoMatch from "./NoMatch";
-import Login from "./login/Login";
+import Home from "components/Home";
+import NetworkError from "components/NetworkError";
+import NoMatch from "components/NoMatch";
+import Login from "components/login/Login";
 
 function Router() {
   return (
