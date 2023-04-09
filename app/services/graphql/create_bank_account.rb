@@ -4,7 +4,6 @@ module Graphql
   class CreateBankAccount
     def initialize(bank_account_input:, context:)
       @context = context
-      @bank_account_input = bank_account_input
 
       @bank_account =
         BankAccount.new(**bank_account_input, user: context[:current_user])

@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 export const MUTATION = gql`
   mutation CreateBankAccount($bankAccountInput: BankAccountInput!) {
     createBankAccount(input: { bankAccountInput: $bankAccountInput }) {
+      errors
       bankAccount {
         id
         name
@@ -33,11 +34,12 @@ function CreateBankAccount() {
 
     const amount = parseFloat(form.amount);
 
-    await createBankAccount({
+    const { data } = await createBankAccount({
       variables: { bankAccountInput: { ...form, amount } },
     });
 
-    navigate("/");
+    if (data.createBankAccount.errors) alert("ERRO!");
+    else navigate("/");
   };
 
   return (
