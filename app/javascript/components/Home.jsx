@@ -12,6 +12,8 @@ const QUERY = gql`
       bankAccounts {
         id
         name
+        amount
+        description
         transactions {
           id
           name
@@ -48,6 +50,8 @@ function Home() {
           <div key={bankAccount.id}>
             <p>BankAccount</p>
             <p>{bankAccount.name}</p>
+            <p>{bankAccount.amount}</p>
+            <p>{bankAccount.description}</p>
 
             <ul>
               {bankAccount.transactions.map((transaction) => (

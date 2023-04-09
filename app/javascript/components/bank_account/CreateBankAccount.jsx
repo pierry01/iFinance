@@ -22,19 +22,20 @@ function CreateBankAccount() {
   const [createBankAccount, { loading }] = useMutation(MUTATION);
   const [form, setForm] = useState({ name: "", description: "", amount: 0.0 });
 
+  const onSubmit = async (event) => {
+    event.preventDefault();
+
+    const amount = parseFloat(form.amount);
+
+    await createBankAccount({
+      variables: { bankAccountInput: { ...form, amount } },
+    });
+
+    navigate("/");
+  };
+
   return (
-    <form
-      className="grid grid-cols-1 gap-6"
-      onSubmit={async (event) => {
-        event.preventDefault();
-
-        const { data } = await createBankAccount({
-          variables: { bankAccountInput: form },
-        });
-
-        if (data.createBankAccount) navigate("./..");
-      }}
-    >
+    <form className="grid grid-cols-1 gap-6" onSubmit={onSubmit}>
       <label className="block" htmlFor="name">
         <span className="text-gray-700">Name</span>
         <input
@@ -70,9 +71,7 @@ function CreateBankAccount() {
           value={form.amount}
           placeholder="john@example.com"
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          onChange={({ target }) =>
-            setForm({ ...form, amount: parseFloat(target.value) })
-          }
+          onChange={({ target }) => setForm({ ...form, amount: target.value })}
         />
       </label>
 
