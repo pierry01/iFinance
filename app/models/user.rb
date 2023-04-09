@@ -14,4 +14,6 @@ class User < ApplicationRecord
 
   has_many :bank_accounts, dependent: :destroy
   has_many :transactions, through: :bank_accounts
+
+  validates :first_name, :last_name, presence: true
 end

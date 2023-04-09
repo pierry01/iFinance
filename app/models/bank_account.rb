@@ -5,5 +5,5 @@ class BankAccount < ApplicationRecord
 
   has_many :transactions, dependent: :destroy
 
-  validates :amount, presence: true
+  validates :amount, :name, :description, presence: true
 end
