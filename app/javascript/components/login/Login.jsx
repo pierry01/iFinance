@@ -2,111 +2,35 @@ import React from "react";
 
 function Login() {
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold">Simple</h2>
-      <div className="mt-8 max-w-md">
-        <div className="grid grid-cols-1 gap-6">
-          <label className="block">
-            <span className="text-gray-700">Full name</span>
-            <input
-              type="text"
-              className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-              placeholder=""
-            />
-          </label>
+    <div className="flex flex-col items-center justify-center p-4">
+      <h2 className="mb-4 text-2xl font-bold">LOGIN</h2>
 
-          <label className="block">
-            <span className="text-gray-700">Email address</span>
-            <input
-              type="email"
-              className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-              placeholder="john@example.com"
-            />
-          </label>
+      <form
+        className="grid grid-cols-1 gap-6"
+        onSubmit={(event) => console.log("SUBMIT", event)}
+      >
+        <label className="block" htmlFor="email">
+          <span className="text-gray-700">Email address</span>
+          <input
+            name="email"
+            type="email"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder="john@example.com"
+          />
+        </label>
 
-          <label className="block">
-            <span className="text-gray-700">When is your event?</span>
-            <input
-              type="date"
-              className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-            />
-          </label>
+        <label className="block" htmlFor="password">
+          <span className="text-gray-700">Password</span>
+          <input
+            name="password"
+            type="password"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            placeholder="***********"
+          />
+        </label>
 
-          <label className="block">
-            <span className="text-gray-700">What type of event is it?</span>
-            <select
-              className="
-                    mt-1
-                    block
-                    w-full
-                    rounded-md
-                    border-gray-300
-                    shadow-sm
-                    focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50
-                  "
-            >
-              <option>Corporate event</option>
-              <option>Wedding</option>
-              <option>Birthday</option>
-              <option>Other</option>
-            </select>
-          </label>
-
-          <label className="block">
-            <span className="text-gray-700">Additional details</span>
-            <textarea
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              rows="3"
-            />
-          </label>
-
-          <div className="block">
-            <div className="mt-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  className="
-                          rounded
-                          border-gray-300
-                          text-indigo-600
-                          shadow-sm
-                          focus:border-indigo-300
-                          focus:ring
-                          focus:ring-indigo-200
-                          focus:ring-opacity-50
-                          focus:ring-offset-0
-                        "
-                />
-                <span className="ml-2">Email me news and special offers</span>
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
+        <button type="submit"> SUBMIT </button>
+      </form>
     </div>
   );
 }

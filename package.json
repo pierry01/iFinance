@@ -25,14 +25,14 @@
     "tailwindcss": "3.3.1"
   },
   "scripts": {
-    "build": "node esbuild.config.js",
-    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css",
+    "build": "NODE_PATH=app/javascript/components esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=$CDN_URL_FULL/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19 --minify",
+    "build:dev": "NODE_PATH=app/javascript/components esbuild app/javascript/*.* --bundle --outdir=app/assets/builds --sourcemap --loader:.svg=file --loader:.png=file --loader:.jpg=file --public-path=/assets --asset-names=[name]-[hash].digested --target=chrome72,firefox74,safari13,edge19",
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
     "lint": "yarn run eslint --ext .js --ext .jsx --ext .gql --ext .graphql app/javascript",
     "graphql:dump_schema": "rails graphql:dump_schema"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "3.2.2",
-    "chokidar": "3.5.3",
     "eslint": "8.37.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.8.0",
