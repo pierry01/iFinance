@@ -19,7 +19,6 @@ gem "devise-jwt", "~> 0.9.0"
 gem "cssbundling-rails", "~> 1.1.2"
 gem "jsbundling-rails", "~> 1.1.1"
 gem "propshaft", "~> 0.7.0"
-gem "stimulus-rails", "~> 1.2.1"
 gem "turbo-rails", "~> 1.4.0"
 
 group :development, :test do

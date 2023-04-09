@@ -22,8 +22,8 @@ function Home() {
   const { user } = data;
 
   return (
-    <div>
-      <h1>{user.id}</h1>
+    <div className="p-4">
+      <h1 className="text-red-500">{user.id}</h1>
       <h1>{user.fullName}</h1>
     </div>
   );

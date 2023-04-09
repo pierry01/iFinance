@@ -54,8 +54,5 @@ async function rebuild() {
 if (process.argv.includes("--rebuild")) rebuild();
 else
   esbuild
-    .build({
-      ...config,
-      minify: process.env.RAILS_ENV === "production",
-    })
+    .build({ ...config, minify: process.env.RAILS_ENV === "production" })
     .catch(() => process.exit(1));
