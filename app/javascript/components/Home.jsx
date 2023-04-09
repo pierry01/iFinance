@@ -16,8 +16,6 @@ const QUERY = gql`
 function Home() {
   const { loading, data } = useQuery(QUERY);
 
-  console.log("data", data);
-
   if (loading) return "CARREGANDO...";
 
   const { user } = data;
