@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   constraints = ->(request) { !request.xhr? && request.format.html? }
 
   get "/login", to: "application#index", constraints: constraints
+  get "/create-bank-account", to: "application#index", constraints: constraints
 
   return unless Rails.env.development?
 

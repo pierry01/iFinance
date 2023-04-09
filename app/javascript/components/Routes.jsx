@@ -6,6 +6,7 @@ import Home from "components/Home";
 import NetworkError from "components/NetworkError";
 import NoMatch from "components/NoMatch";
 import Login from "components/login/Login";
+import CreateBankAccount from "components/bank_account/CreateBankAccount";
 
 import auth from "config/auth";
 
@@ -21,6 +22,15 @@ function Router() {
         element={
           <RequireAuth>
             <Home />
+          </RequireAuth>
+        }
+      />
+
+      <Route
+        path="create-bank-account"
+        element={
+          <RequireAuth>
+            <CreateBankAccount />
           </RequireAuth>
         }
       />
