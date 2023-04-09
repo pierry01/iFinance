@@ -83,6 +83,9 @@ An ISO 8601-encoded datetime
 """
 scalar ISO8601DateTime
 
+"""
+Mutation ROOT
+"""
 type Mutation {
   """
   CREATE a BankAccount
@@ -102,12 +105,7 @@ type Query {
   """
   GET User by ID
   """
-  userQuery(
-    """
-    User ID
-    """
-    id: ID!
-  ): User!
+  userQuery: User
 }
 
 """

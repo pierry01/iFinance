@@ -4,26 +4,30 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
 const QUERY = gql`
-  query App($id: ID!) {
-    user: userQuery(id: $id) {
+  query Home {
+    user: userQuery {
       id
+      email
       fullName
     }
   }
 `;
 
 function Home() {
-  const { loading, data } = useQuery(QUERY, {
-    variables: { id: "c5c294a4-4a56-441b-9aff-2b9ff7c3dfd8" },
-  });
+  const { loading, data } = useQuery(QUERY);
+
+  console.log("data", data);
 
   if (loading) return "CARREGANDO...";
 
   const { user } = data;
 
+  if (!user) return "NÃO HÁ USUÁRIO LOGADO";
+
   return (
     <div className="p-4">
       <h1 className="text-red-500">{user.id}</h1>
+      <h1>{user.email}</h1>
       <h1>{user.fullName}</h1>
     </div>
   );

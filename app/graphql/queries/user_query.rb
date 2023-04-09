@@ -2,14 +2,12 @@
 
 module Queries
   class UserQuery < BaseQuery
-    description "GET User by ID"
+    description "GET the CurrentUser"
 
-    type Types::UserType, null: false
+    type Types::UserType, null: true
 
-    argument :id, ID, "User ID", required: true
-
-    def resolve(id:)
-      User.find(id)
+    def resolve
+      context[:current_user]
     end
   end
 end
