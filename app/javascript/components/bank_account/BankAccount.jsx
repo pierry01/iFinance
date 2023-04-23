@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import formatCurrency from "config/formatCurrency";
 
+import Modal from "components/Modal";
+
 function BankAccount({ bankAccount }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -33,20 +35,20 @@ function BankAccount({ bankAccount }) {
         </button>
       </div>
 
-      {modalVisible ? (
-        <ul>
-          {bankAccount.transactions.map((transaction) => (
-            <div key={transaction.id}>
-              <p>{transaction.done}</p>
-              <p>{transaction.kind}</p>
-              <p>{transaction.name}</p>
-              <p>{formatCurrency(transaction.amount)}</p>
-              <p>{transaction.description}</p>
-              <p>{transaction.due_date}</p>
-            </div>
-          ))}
-        </ul>
-      ) : null}
+      {/* <ul>
+        {bankAccount.transactions.map((transaction) => (
+          <div key={transaction.id}>
+            <p>{transaction.done}</p>
+            <p>{transaction.kind}</p>
+            <p>{transaction.name}</p>
+            <p>{formatCurrency(transaction.amount)}</p>
+            <p>{transaction.description}</p>
+            <p>{transaction.due_date}</p>
+          </div>
+        ))}
+      </ul> */}
+
+      {modalVisible ? <Modal /> : null}
     </>
   );
 }
