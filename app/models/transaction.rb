@@ -11,4 +11,7 @@ class Transaction < ApplicationRecord
 
   validates :kind, :name, :amount, :description, presence: true
   validates :kind, inclusion: ALL_KINDS
+
+  scope :income, -> { where(kind: INCOME) }
+  scope :expense, -> { where(kind: EXPENSE) }
 end

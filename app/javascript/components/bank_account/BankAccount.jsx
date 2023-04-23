@@ -6,7 +6,9 @@ import formatCurrency from "config/formatCurrency";
 import Modal from "components/Modal";
 
 function BankAccount({ bankAccount }) {
+  const { amount } = bankAccount;
   const [modalVisible, setModalVisible] = useState(false);
+  const amountColor = amount >= 0 ? "text-green-500" : "text-red-500";
 
   return (
     <>
@@ -32,7 +34,9 @@ function BankAccount({ bankAccount }) {
         <div>
           <div className="flex flex-row justify-between">
             <p>Saldo:</p>
-            <p>{formatCurrency(bankAccount.amount)}</p>
+            <p className={`font-medium ${amountColor}`}>
+              {formatCurrency(amount)}
+            </p>
           </div>
 
           <div className="flex flex-row justify-between">
