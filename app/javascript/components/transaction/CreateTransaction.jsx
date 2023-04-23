@@ -6,40 +6,44 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
 export const MUTATION = gql`
-  mutation CreateBankAccount($bankAccountInput: BankAccountInput!) {
-    createBankAccount(input: { bankAccountInput: $bankAccountInput }) {
+  mutation CreateTransaction($transactionInput: TransactionInput!) {
+    createTransaction(input: { transactionInput: $transactionInput }) {
       errors
-      bankAccount {
+      transaction {
         id
         name
         amount
         description
-        user {
-          id
-          bankAccounts {
-            id
-          }
-        }
       }
     }
   }
 `;
 
-const FORM = { name: "", description: "" };
+const FORM = {
+  kind: "",
+  name: "",
+  done: true,
+  amount: 0.0,
+  due_date: "",
+  description: "",
+  bank_account_id: "",
+};
 
-function CreateBankAccount({ onClose }) {
+function CreateTransaction({ onClose }) {
   const navigate = useNavigate();
   const [form, setForm] = useState(FORM);
-  const [createBankAccount, { loading }] = useMutation(MUTATION);
+  const [createTransaction, { loading }] = useMutation(MUTATION);
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const { data } = await createBankAccount({
-      variables: { bankAccountInput: form },
+    const amount = parseFloat(form.amount);
+
+    const { data } = await createTransaction({
+      variables: { transactionInput: { ...form, amount } },
     });
 
-    if (data.createBankAccount.errors) alert("ERRO!");
+    if (data.createTransaction.errors) alert("ERRO!");
     else {
       navigate("/");
       onClose();
@@ -74,17 +78,30 @@ function CreateBankAccount({ onClose }) {
         />
       </label>
 
+      <label className="block" htmlFor="amount">
+        <span className="text-gray-700">Amount</span>
+        <input
+          name="amount"
+          type="number"
+          step="0.01"
+          value={form.amount}
+          placeholder="john@example.com"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          onChange={({ target }) => setForm({ ...form, amount: target.value })}
+        />
+      </label>
+
       <button
         type="submit"
         disabled={loading}
         className="rounded-md bg-green-300 p-2"
       >
-        CREATE BankAccount
+        CREATE Transaction
       </button>
     </form>
   );
 }
 
-CreateBankAccount.propTypes = { onClose: PropTypes.func.isRequired };
+CreateTransaction.propTypes = { onClose: PropTypes.func.isRequired };
 
-export default CreateBankAccount;
+export default CreateTransaction;

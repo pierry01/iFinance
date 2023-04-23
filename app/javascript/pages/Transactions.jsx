@@ -46,7 +46,7 @@ function Transactions() {
         <Link to="/">Voltar para o início</Link>
       </div>
 
-      <div className="flex flex-row flex-wrap gap-x-4 gap-y-2">
+      <div className="flex flex-row flex-wrap gap-4">
         {transactions.map((transaction) => (
           <Transaction key={transaction.id} transaction={transaction} />
         ))}

@@ -9,7 +9,7 @@ function Transaction({ transaction }) {
   const amountColor = kind === INCOME ? "text-green-500" : "text-red-500";
 
   return (
-    <div className="mb-2 w-80 rounded-md border bg-gray-100 p-4">
+    <div className="w-80 rounded-md border bg-gray-100 p-4">
       <h1>{transaction.name}</h1>
 
       <div className="flex flex-row justify-between">

@@ -2,8 +2,10 @@ import React, { useState } from "react";
 
 import login from "config/login";
 
+const FORM = { email: "", password: "" };
+
 function Login() {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState(FORM);
 
   return (
     <div className="mt-4 flex flex-col items-center justify-center p-4">
