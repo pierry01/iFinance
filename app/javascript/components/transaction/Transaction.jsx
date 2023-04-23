@@ -1,24 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { INCOME } from "config/transaction";
 import formatCurrency from "config/formatCurrency";
 
 function Transaction({ transaction }) {
-  const { amount } = transaction;
-  const amountColor = amount >= 0 ? "text-green-500" : "text-red-500";
+  const { kind, dueDate } = transaction;
+  const amountColor = kind === INCOME ? "text-green-500" : "text-red-500";
 
   return (
-    <div className="mb-4 w-80 rounded-md border bg-gray-100 p-4">
-      <div className="mb-4 flex flex-row items-center justify-between gap-4">
-        <p>{transaction.name}</p>
-
-        <button type="button">...</button>
-      </div>
+    <div className="mb-2 w-80 rounded-md border bg-gray-100 p-4">
+      <h1>{transaction.name}</h1>
 
       <div className="flex flex-row justify-between">
         <p>Valor:</p>
-        <p className={`font-medium ${amountColor}`}>{formatCurrency(amount)}</p>
+        <p className={`font-medium ${amountColor}`}>
+          {formatCurrency(transaction.amount)}
+        </p>
       </div>
+
+      <div className="flex flex-row justify-between">
+        <p>Finalizada?</p>
+        <p>{transaction.done ? "Sim" : "Não"}</p>
+      </div>
+
+      {dueDate ? (
+        <div className="flex flex-row justify-between">
+          <p>Vencimento:</p>
+          <p>{dueDate}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -30,6 +41,7 @@ Transaction.propTypes = {
     kind: PropTypes.string,
     name: PropTypes.string,
     amount: PropTypes.number,
+    dueDate: PropTypes.string,
     due_date: PropTypes.string,
   }).isRequired,
 };
