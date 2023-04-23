@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
@@ -30,7 +30,6 @@ const QUERY = gql`
 `;
 
 function Home() {
-  const navigate = useNavigate();
   const { loading, data } = useQuery(QUERY);
 
   if (loading) return "CARREGANDO...";
@@ -39,15 +38,11 @@ function Home() {
 
   return (
     <div className="p-4">
-      <button
-        type="button"
-        className="mb-2 rounded-md bg-gray-300 p-2"
-        onClick={() => navigate("create-bank-account")}
-      >
+      <Link to="create-bank-account" className="rounded-md bg-gray-300 p-2">
         ADICIONAR CONTA BANCÁRIA
-      </button>
+      </Link>
 
-      <p>User: {user.email}</p>
+      <p className="mt-2">User: {user.email}</p>
 
       <ul className="mt-4 flex flex-row flex-wrap items-center gap-4">
         {user.bankAccounts.map((bankAccount) => (
