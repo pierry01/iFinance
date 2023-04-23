@@ -11,15 +11,11 @@ export const MUTATION = gql`
       errors
       transaction {
         id
-        name
-        amount
-        description
         bankAccount {
           id
-          transactions {
-            id
-            amount
-          }
+          amount
+          sumOfIncomes
+          sumOfExpenses
         }
       }
     }

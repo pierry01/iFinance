@@ -15,7 +15,9 @@ const QUERY = gql`
         id
         name
         kind
+        done
         amount
+        dueDate
       }
     }
   }
