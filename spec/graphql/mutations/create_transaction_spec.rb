@@ -3,18 +3,19 @@
 require "rails_helper"
 
 module Mutations
-  RSpec.describe(CreateBankAccount, type: :request) do
+  RSpec.describe(CreateTransaction, type: :request) do
     let(:user) { create(:user) }
     let(:name) { "ACCOUNT NAME" }
+    let(:bank_account) { create(:bank_account, user:) }
     let(:headers) { Devise::JWT::TestHelpers.auth_headers({}, user) }
 
-    it "returns created BankAccount" do
+    it "returns created Transaction" do
       post("/graphql", params: { query: }, headers:)
 
       json = JSON.parse(response.body)
-      data = json["data"]["createBankAccount"]
+      data = json["data"]["createTransaction"]
 
-      expect(data["bankAccount"]["id"]).to(be_present)
+      expect(data["transaction"]["id"]).to(be_present)
     end
 
     it "returns UNAUTHORIZED without a valid token" do
@@ -33,7 +34,7 @@ module Mutations
         post("/graphql", params: { query: }, headers:)
 
         json = JSON.parse(response.body)
-        errors = json["data"]["createBankAccount"]["errors"]
+        errors = json["data"]["createTransaction"]["errors"]
 
         expect(errors).to(eq(["Name can't be blank"]))
       end
@@ -44,15 +45,18 @@ module Mutations
     def query
       <<~GQL
         mutation {
-          createBankAccount(input: {
-            bankAccountInput: {
+          createTransaction(input: {
+            transactionInput: {
+              done: true,
+              kind: "INCOME",
               name: "#{name}",
               amount: 1234.56,
-              description: "LOREM IPSUM..."
+              description: "LOREM IPSUM...",
+              bankAccountId: "#{bank_account.id}"
             }
           }) {
             errors
-            bankAccount {
+            transaction {
               id
               name
               amount
