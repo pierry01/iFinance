@@ -35,20 +35,22 @@ function BankAccount({ bankAccount }) {
         </button>
       </div>
 
-      {/* <ul>
-        {bankAccount.transactions.map((transaction) => (
-          <div key={transaction.id}>
-            <p>{transaction.done}</p>
-            <p>{transaction.kind}</p>
-            <p>{transaction.name}</p>
-            <p>{formatCurrency(transaction.amount)}</p>
-            <p>{transaction.description}</p>
-            <p>{transaction.due_date}</p>
-          </div>
-        ))}
-      </ul> */}
-
-      {modalVisible ? <Modal /> : null}
+      {modalVisible ? (
+        <Modal title="Transactions" onClose={() => setModalVisible(false)}>
+          <ul>
+            {bankAccount.transactions.map((transaction) => (
+              <div key={transaction.id}>
+                <p>{transaction.done}</p>
+                <p>{transaction.kind}</p>
+                <p>{transaction.name}</p>
+                <p>{formatCurrency(transaction.amount)}</p>
+                <p>{transaction.description}</p>
+                <p>{transaction.due_date}</p>
+              </div>
+            ))}
+          </ul>
+        </Modal>
+      ) : null}
     </>
   );
 }
