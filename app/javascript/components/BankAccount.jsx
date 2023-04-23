@@ -72,7 +72,7 @@ function BankAccount({ bankAccount }) {
 
       {modal ? (
         <Modal title="CREATE Transaction" onClose={onClose}>
-          <CreateTransaction onClose={onClose} />
+          <CreateTransaction onClose={onClose} bankAccountId={bankAccount.id} />
         </Modal>
       ) : null}
     </>

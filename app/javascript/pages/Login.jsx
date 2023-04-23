@@ -18,7 +18,7 @@ function Login() {
           login(form);
         }}
       >
-        <label className="block" htmlFor="email">
+        <label htmlFor="email">
           <span className="text-gray-700">Email address</span>
           <input
             name="email"
@@ -30,7 +30,7 @@ function Login() {
           />
         </label>
 
-        <label className="block" htmlFor="password">
+        <label htmlFor="password">
           <span className="text-gray-700">Password</span>
           <input
             name="password"

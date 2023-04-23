@@ -14,22 +14,29 @@ export const MUTATION = gql`
         name
         amount
         description
+        bankAccount {
+          id
+          transactions {
+            id
+            amount
+          }
+        }
       }
     }
   }
 `;
 
-const FORM = {
-  kind: "",
-  name: "",
-  done: true,
-  amount: 0.0,
-  due_date: "",
-  description: "",
-  bank_account_id: "",
-};
+function CreateTransaction({ onClose, bankAccountId }) {
+  const FORM = {
+    name: "",
+    done: true,
+    amount: 0.0,
+    dueDate: "",
+    bankAccountId,
+    kind: "INCOME",
+    description: "",
+  };
 
-function CreateTransaction({ onClose }) {
   const navigate = useNavigate();
   const [form, setForm] = useState(FORM);
   const [createTransaction, { loading }] = useMutation(MUTATION);
@@ -37,10 +44,8 @@ function CreateTransaction({ onClose }) {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const amount = parseFloat(form.amount);
-
     const { data } = await createTransaction({
-      variables: { transactionInput: { ...form, amount } },
+      variables: { transactionInput: form },
     });
 
     if (data.createTransaction.errors) alert("ERRO!");
@@ -51,21 +56,22 @@ function CreateTransaction({ onClose }) {
   };
 
   return (
-    <form className="grid grid-cols-1 gap-4 p-4" onSubmit={onSubmit}>
-      <label className="block" htmlFor="name">
+    <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+      <label htmlFor="name">
         <span className="text-gray-700">Name</span>
+
         <input
           name="name"
           type="text"
           value={form.name}
-          placeholder="john@example.com"
           onChange={({ target }) => setForm({ ...form, name: target.value })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="w-full rounded-md border-gray-300 shadow-sm"
         />
       </label>
 
-      <label className="block" htmlFor="description">
+      <label htmlFor="description">
         <span className="text-gray-700">Description</span>
+
         <input
           name="description"
           type="text"
@@ -74,20 +80,103 @@ function CreateTransaction({ onClose }) {
           onChange={({ target }) =>
             setForm({ ...form, description: target.value })
           }
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          className="w-full rounded-md border-gray-300 shadow-sm"
         />
       </label>
 
-      <label className="block" htmlFor="amount">
+      <label htmlFor="amount">
         <span className="text-gray-700">Amount</span>
+
         <input
+          min="0.00"
+          step="0.01"
           name="amount"
           type="number"
-          step="0.01"
           value={form.amount}
-          placeholder="john@example.com"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          onChange={({ target }) => setForm({ ...form, amount: target.value })}
+          className="w-full rounded-md border-gray-300 shadow-sm"
+          onChange={({ target }) =>
+            setForm({
+              ...form,
+              amount: parseFloat(target.value || 0),
+            })
+          }
+        />
+      </label>
+
+      <div>
+        <span className="text-gray-700">Kind</span>
+
+        <div className="flex flex-row gap-4">
+          <label htmlFor="income" className="flex items-center gap-2">
+            <span className="text-gray-700">INCOME</span>
+
+            <input
+              id="income"
+              name="kind"
+              type="radio"
+              checked={form.kind === "INCOME"}
+              onChange={() => setForm({ ...form, kind: "INCOME" })}
+              className="h-4 w-4 border-gray-300 text-blue-500"
+            />
+          </label>
+
+          <label htmlFor="expense" className="flex items-center gap-2">
+            <span className="text-gray-700">EXPENSE</span>
+
+            <input
+              name="kind"
+              id="expense"
+              type="radio"
+              checked={form.kind === "EXPENSE"}
+              onChange={() => setForm({ ...form, kind: "EXPENSE" })}
+              className="h-4 w-4 border-gray-300 text-blue-500"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <span className="text-gray-700">Done</span>
+
+        <div className="flex flex-row gap-4">
+          <label htmlFor="done" className="flex items-center gap-2">
+            <span className="text-gray-700">DONE</span>
+
+            <input
+              id="done"
+              name="done"
+              type="radio"
+              checked={form.done}
+              onChange={() => setForm({ ...form, done: true })}
+              className="h-4 w-4 border-gray-300 text-blue-500"
+            />
+          </label>
+
+          <label htmlFor="pending" className="flex items-center gap-2">
+            <span className="text-gray-700">PENDING</span>
+
+            <input
+              name="done"
+              id="pending"
+              type="radio"
+              checked={!form.done}
+              onChange={() => setForm({ ...form, done: false })}
+              className="h-4 w-4 border-gray-300 text-blue-500"
+            />
+          </label>
+        </div>
+      </div>
+
+      <label htmlFor="dueDate">
+        <span className="text-gray-700">Due date</span>
+
+        <input
+          type="date"
+          name="dueDate"
+          max="2099-12-31"
+          value={form.dueDate}
+          onChange={({ target }) => setForm({ ...form, dueDate: target.value })}
+          className="w-full rounded-md border-gray-300 shadow-sm"
         />
       </label>
 
@@ -102,6 +191,9 @@ function CreateTransaction({ onClose }) {
   );
 }
 
-CreateTransaction.propTypes = { onClose: PropTypes.func.isRequired };
+CreateTransaction.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  bankAccountId: PropTypes.string.isRequired,
+};
 
 export default CreateTransaction;

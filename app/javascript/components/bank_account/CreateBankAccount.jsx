@@ -48,19 +48,18 @@ function CreateBankAccount({ onClose }) {
 
   return (
     <form className="grid grid-cols-1 gap-4 p-4" onSubmit={onSubmit}>
-      <label className="block" htmlFor="name">
+      <label htmlFor="name">
         <span className="text-gray-700">Name</span>
         <input
           name="name"
           type="text"
           value={form.name}
-          placeholder="john@example.com"
           onChange={({ target }) => setForm({ ...form, name: target.value })}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
         />
       </label>
 
-      <label className="block" htmlFor="description">
+      <label htmlFor="description">
         <span className="text-gray-700">Description</span>
         <input
           name="description"
