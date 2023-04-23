@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import formatCurrency from "config/formatCurrency";
+
 function BankAccount({ bankAccount }) {
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -21,9 +23,9 @@ function BankAccount({ bankAccount }) {
           <button type="button">...</button>
         </div>
 
-        <p>Saldo: {bankAccount.amount}</p>
-        <p>Soma das receitas: {bankAccount.sumOfIncomes}</p>
-        <p>Soma das despesas: {bankAccount.sumOfExpenses}</p>
+        <p>Saldo: {formatCurrency(bankAccount.amount)}</p>
+        <p>Soma das receitas: {formatCurrency(bankAccount.sumOfIncomes)}</p>
+        <p>Soma das despesas: {formatCurrency(bankAccount.sumOfExpenses)}</p>
         <p>Descrição: {bankAccount.description}</p>
 
         <button type="button" onClick={() => setModalVisible(true)}>
@@ -38,7 +40,7 @@ function BankAccount({ bankAccount }) {
               <p>{transaction.done}</p>
               <p>{transaction.kind}</p>
               <p>{transaction.name}</p>
-              <p>{transaction.amount}</p>
+              <p>{formatCurrency(transaction.amount)}</p>
               <p>{transaction.description}</p>
               <p>{transaction.due_date}</p>
             </div>
