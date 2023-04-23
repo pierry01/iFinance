@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import formatCurrency from "config/formatCurrency";
 
 import Modal from "components/Modal";
+import Transaction from "components/transaction/Transaction";
 
 function BankAccount({ bankAccount }) {
   const { amount } = bankAccount;
@@ -67,13 +68,7 @@ function BankAccount({ bankAccount }) {
         <Modal title="Transactions" onClose={() => setModalVisible(false)}>
           <ul>
             {bankAccount.transactions.map((transaction) => (
-              <div key={transaction.id}>
-                <p>{transaction.done}</p>
-                <p>{transaction.kind}</p>
-                <p>{transaction.name}</p>
-                <p>{formatCurrency(transaction.amount)}</p>
-                <p>{transaction.due_date}</p>
-              </div>
+              <Transaction key={transaction.id} transaction={transaction} />
             ))}
           </ul>
         </Modal>
