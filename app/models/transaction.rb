@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Transaction < ApplicationRecord
-  KINDS = [INCOME = "INCOME", EXPENSE = "EXPENSE", TRANSFER = "TRANSFER"]
+  ALL_KINDS = [
+    INCOME = "INCOME",
+    EXPENSE = "EXPENSE",
+    TRANSFER = "TRANSFER"
+  ].freeze
 
   belongs_to :bank_account
 
