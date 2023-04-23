@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { INCOME } from "config/transaction";
 import formatCurrency from "config/formatCurrency";
+import formatDate from "config/formatDate";
 
 function Transaction({ transaction }) {
   const { kind, dueDate } = transaction;
@@ -27,7 +28,7 @@ function Transaction({ transaction }) {
       {dueDate ? (
         <div className="flex flex-row justify-between">
           <p>Vencimento:</p>
-          <p>{dueDate}</p>
+          <p>{formatDate(dueDate)}</p>
         </div>
       ) : null}
     </div>
