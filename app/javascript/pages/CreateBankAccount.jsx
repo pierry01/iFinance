@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 import gql from "graphql-tag";
@@ -43,7 +44,11 @@ function CreateBankAccount() {
   };
 
   return (
-    <form className="grid grid-cols-1 gap-6" onSubmit={onSubmit}>
+    <form className="grid grid-cols-1 gap-4 p-4" onSubmit={onSubmit}>
+      <div className="text-blue-500 underline">
+        <Link to="/">Voltar para o início</Link>
+      </div>
+
       <label className="block" htmlFor="name">
         <span className="text-gray-700">Name</span>
         <input

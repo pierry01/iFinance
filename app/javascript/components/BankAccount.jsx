@@ -51,7 +51,9 @@ function BankAccount({ bankAccount }) {
         </div>
       </div>
 
-      <Link to={`${bankAccount.id}/transactions`}>Ver transações</Link>
+      <div className="text-end text-blue-500 underline">
+        <Link to={`${bankAccount.id}/transactions`}>Ver transações</Link>
+      </div>
     </div>
   );
 }
@@ -63,16 +65,6 @@ BankAccount.propTypes = {
     amount: PropTypes.number,
     sumOfIncomes: PropTypes.number,
     sumOfExpenses: PropTypes.number,
-    transactions: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        done: PropTypes.bool,
-        kind: PropTypes.string,
-        name: PropTypes.string,
-        amount: PropTypes.number,
-        due_date: PropTypes.string,
-      })
-    ),
   }).isRequired,
 };
 

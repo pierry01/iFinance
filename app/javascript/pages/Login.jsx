@@ -10,7 +10,7 @@ function Login() {
       <h2 className="mb-4 text-2xl font-bold">SIMPLE LOGIN PAGE</h2>
 
       <form
-        className="grid grid-cols-1 gap-6"
+        className="grid grid-cols-1 gap-4"
         onSubmit={(event) => {
           event.preventDefault();
           login(form);
