@@ -19,13 +19,16 @@ module Graphql
     private
 
     def handle_bank_account_amount
+      amount = @transaction.amount
       bank_account = @transaction.bank_account
 
       if @transaction.kind == Transaction::INCOME
-        bank_account.update!(amount: bank_account.amount + @transaction.amount)
+        bank_account.increment(:amount, amount)
       else
-        bank_account.update!(amount: bank_account.amount - @transaction.amount)
+        bank_account.decrement(:amount, amount)
       end
+
+      bank_account.save!
     end
   end
 end
