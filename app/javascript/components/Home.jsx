@@ -15,7 +15,6 @@ const QUERY = gql`
         id
         name
         amount
-        description
         sumOfIncomes
         sumOfExpenses
         transactions {

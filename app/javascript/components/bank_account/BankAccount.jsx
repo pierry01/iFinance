@@ -10,27 +10,51 @@ function BankAccount({ bankAccount }) {
 
   return (
     <>
-      <div className="mb-4 rounded-md border bg-gray-200 p-4">
-        <div className="flex flex-row items-center gap-4">
-          <img
-            alt="BankAccount LOGO"
-            className="h-10 w-10 rounded-full"
-            src="https://i.pinimg.com/280x280_RS/cb/b2/80/cbb280fa8c687cf3b137df878bf82d08.jpg"
-          />
+      <div className="mb-4 w-80 rounded-md border bg-gray-100 p-4">
+        <div className="mb-4 flex flex-row items-center justify-between gap-4">
+          <div className="flex flex-row items-center gap-4">
+            <img
+              alt="BankAccount LOGO"
+              className="h-10 w-10 rounded-full"
+              src="https://i.pinimg.com/280x280_RS/cb/b2/80/cbb280fa8c687cf3b137df878bf82d08.jpg"
+            />
 
-          <p>{bankAccount.name}</p>
+            <p>{bankAccount.name}</p>
+          </div>
 
-          <button type="button">+</button>
-          <button type="button">*</button>
-          <button type="button">...</button>
+          <div className="flex flex-row items-center gap-4">
+            <button type="button">+</button>
+            <button type="button">*</button>
+            <button type="button">...</button>
+          </div>
         </div>
 
-        <p>Saldo: {formatCurrency(bankAccount.amount)}</p>
-        <p>Soma das receitas: {formatCurrency(bankAccount.sumOfIncomes)}</p>
-        <p>Soma das despesas: {formatCurrency(bankAccount.sumOfExpenses)}</p>
-        <p>Descrição: {bankAccount.description}</p>
+        <div>
+          <div className="flex flex-row justify-between">
+            <p>Saldo:</p>
+            <p>{formatCurrency(bankAccount.amount)}</p>
+          </div>
 
-        <button type="button" onClick={() => setModalVisible(true)}>
+          <div className="flex flex-row justify-between">
+            <p>Soma das receitas:</p>
+            <p className="font-medium text-green-500">
+              {formatCurrency(bankAccount.sumOfIncomes)}
+            </p>
+          </div>
+
+          <div className="flex flex-row justify-between">
+            <p>Soma das despesas:</p>
+            <p className="font-medium text-red-500">
+              {formatCurrency(bankAccount.sumOfExpenses)}
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="mt-4"
+          onClick={() => setModalVisible(true)}
+        >
           Ver transações
         </button>
       </div>
@@ -44,7 +68,6 @@ function BankAccount({ bankAccount }) {
                 <p>{transaction.kind}</p>
                 <p>{transaction.name}</p>
                 <p>{formatCurrency(transaction.amount)}</p>
-                <p>{transaction.description}</p>
                 <p>{transaction.due_date}</p>
               </div>
             ))}
@@ -59,7 +82,6 @@ BankAccount.propTypes = {
   bankAccount: PropTypes.shape({
     name: PropTypes.string,
     amount: PropTypes.number,
-    description: PropTypes.string,
     sumOfIncomes: PropTypes.number,
     sumOfExpenses: PropTypes.number,
     transactions: PropTypes.arrayOf(
@@ -70,7 +92,6 @@ BankAccount.propTypes = {
         name: PropTypes.string,
         amount: PropTypes.number,
         due_date: PropTypes.string,
-        description: PropTypes.string,
       })
     ),
   }).isRequired,
