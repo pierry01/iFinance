@@ -28,6 +28,11 @@ type BankAccount {
   sumOfExpenses: Float!
 
   """
+  Soma das receitas
+  """
+  sumOfIncomes: Float!
+
+  """
   Lista de transações
   """
   transactions: [Transaction!]!
