@@ -6,7 +6,6 @@ import Transactions from "pages/Transactions";
 import NetworkError from "pages/NetworkError";
 import NoMatch from "pages/NoMatch";
 import Login from "pages/Login";
-import CreateBankAccount from "pages/CreateBankAccount";
 
 import auth from "config/auth";
 
@@ -21,7 +20,6 @@ function Router() {
       <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
       <Route path=":bankAccountId/transactions" element={<Transactions />} />
-      <Route path="create-bank-account" element={<CreateBankAccount />} />
 
       <Route path="network-error" element={<NetworkError />} />
       <Route path="*" element={<NoMatch />} />

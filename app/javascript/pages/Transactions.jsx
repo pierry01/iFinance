@@ -27,6 +27,19 @@ function Transactions() {
 
   if (loading) return "CARREGANDO...";
 
+  const { transactions } = data.user;
+
+  if (!transactions.length)
+    return (
+      <div className="p-4">
+        <h1>BankAccount NÃO POSSUI Transaction</h1>
+
+        <div className="mt-4 text-blue-500 underline">
+          <Link to="/">Voltar para o início</Link>
+        </div>
+      </div>
+    );
+
   return (
     <div className="p-4">
       <div className="mb-4 text-blue-500 underline">
@@ -34,7 +47,7 @@ function Transactions() {
       </div>
 
       <div className="flex flex-row flex-wrap gap-x-4 gap-y-2">
-        {data.user.transactions.map((transaction) => (
+        {transactions.map((transaction) => (
           <Transaction key={transaction.id} transaction={transaction} />
         ))}
       </div>

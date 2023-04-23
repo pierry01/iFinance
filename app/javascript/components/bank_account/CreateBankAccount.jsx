@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import PropTypes from "prop-types";
 
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
@@ -25,30 +25,27 @@ export const MUTATION = gql`
   }
 `;
 
-function CreateBankAccount() {
+function CreateBankAccount({ onClose }) {
   const navigate = useNavigate();
   const [createBankAccount, { loading }] = useMutation(MUTATION);
-  const [form, setForm] = useState({ name: "", description: "", amount: 0.0 });
+  const [form, setForm] = useState({ name: "", description: "" });
 
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const amount = parseFloat(form.amount);
-
     const { data } = await createBankAccount({
-      variables: { bankAccountInput: { ...form, amount } },
+      variables: { bankAccountInput: form },
     });
 
     if (data.createBankAccount.errors) alert("ERRO!");
-    else navigate("/");
+    else {
+      navigate("/");
+      onClose();
+    }
   };
 
   return (
     <form className="grid grid-cols-1 gap-4 p-4" onSubmit={onSubmit}>
-      <div className="text-blue-500 underline">
-        <Link to="/">Voltar para o início</Link>
-      </div>
-
       <label className="block" htmlFor="name">
         <span className="text-gray-700">Name</span>
         <input
@@ -75,19 +72,6 @@ function CreateBankAccount() {
         />
       </label>
 
-      <label className="block" htmlFor="amount">
-        <span className="text-gray-700">Amount</span>
-        <input
-          name="amount"
-          type="number"
-          step="0.01"
-          value={form.amount}
-          placeholder="john@example.com"
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-          onChange={({ target }) => setForm({ ...form, amount: target.value })}
-        />
-      </label>
-
       <button
         type="submit"
         disabled={loading}
@@ -98,5 +82,7 @@ function CreateBankAccount() {
     </form>
   );
 }
+
+CreateBankAccount.propTypes = { onClose: PropTypes.func.isRequired };
 
 export default CreateBankAccount;

@@ -1,10 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
 import BankAccount from "components/BankAccount";
+import Modal from "components/Modal";
+import CreateBankAccount from "components/bank_account/CreateBankAccount";
 
 const QUERY = gql`
   query Home {
@@ -23,23 +24,38 @@ const QUERY = gql`
 
 function Home() {
   const { loading, data } = useQuery(QUERY);
+  const [modal, setModal] = useState(false);
 
   if (loading) return "CARREGANDO...";
 
   const { user } = data;
 
-  return (
-    <div className="p-4">
-      <Link to="create-bank-account" className="rounded-md bg-gray-300 p-2">
-        ADICIONAR CONTA BANCÁRIA
-      </Link>
+  const onClose = () => setModal(false);
 
-      <ul className="mt-4 flex flex-row flex-wrap items-center gap-4">
-        {user.bankAccounts.map((bankAccount) => (
-          <BankAccount key={bankAccount.id} bankAccount={bankAccount} />
-        ))}
-      </ul>
-    </div>
+  return (
+    <>
+      <div className="p-4">
+        <button
+          type="button"
+          className="rounded-md bg-gray-300 p-2"
+          onClick={() => setModal(true)}
+        >
+          ADICIONAR CONTA BANCÁRIA
+        </button>
+
+        <ul className="mt-4 flex flex-row flex-wrap items-center gap-4">
+          {user.bankAccounts.map((bankAccount) => (
+            <BankAccount key={bankAccount.id} bankAccount={bankAccount} />
+          ))}
+        </ul>
+      </div>
+
+      {modal ? (
+        <Modal title="CREATE BankAccount" onClose={onClose}>
+          <CreateBankAccount onClose={onClose} />
+        </Modal>
+      ) : null}
+    </>
   );
 }
 
