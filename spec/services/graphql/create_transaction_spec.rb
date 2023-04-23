@@ -24,22 +24,6 @@ module Graphql
 
     it { expect { service }.to(change(Transaction, :count).by(1)) }
 
-    it do
-      expect { service }.to(
-        change { bank_account.reload.amount }.from(10).to(-2.34)
-      )
-    end
-
-    context "when transaction kind is INCOME" do
-      let(:kind) { "INCOME" }
-
-      it do
-        expect { service }.to(
-          change { bank_account.reload.amount }.from(10).to(22.34)
-        )
-      end
-    end
-
     context "with invalid params" do
       let(:kind) { nil }
 

@@ -5,5 +5,9 @@ class BankAccount < ApplicationRecord
 
   has_many :transactions, dependent: :destroy
 
-  validates :amount, :name, :description, presence: true
+  validates :name, :description, presence: true
+
+  def amount
+    transactions.income.sum(:amount) - transactions.expense.sum(:amount)
+  end
 end

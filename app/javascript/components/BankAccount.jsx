@@ -30,13 +30,6 @@ function BankAccount({ bankAccount }) {
 
       <div className="mb-4">
         <div className="flex flex-row justify-between">
-          <p>Saldo:</p>
-          <p className={`font-medium ${amountColor}`}>
-            {formatCurrency(amount)}
-          </p>
-        </div>
-
-        <div className="flex flex-row justify-between">
           <p>Soma das receitas:</p>
           <p className="font-medium text-green-500">
             {formatCurrency(bankAccount.sumOfIncomes)}
@@ -51,8 +44,20 @@ function BankAccount({ bankAccount }) {
         </div>
       </div>
 
-      <div className="text-end text-blue-500 underline">
-        <Link to={`${bankAccount.id}/transactions`}>Ver transações</Link>
+      <div className="flex flex-row justify-between gap-4">
+        <div className="flex flex-row items-center gap-2">
+          <p>Saldo:</p>
+          <p className={`font-medium ${amountColor}`}>
+            {formatCurrency(amount)}
+          </p>
+        </div>
+
+        <Link
+          className="text-blue-500 underline"
+          to={`${bankAccount.id}/transactions`}
+        >
+          Ver transações
+        </Link>
       </div>
     </div>
   );

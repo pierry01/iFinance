@@ -10,7 +10,3 @@ bank_account = FactoryBot.create(:bank_account, user:)
   )
 end
 
-incomes = bank_account.transactions.income.sum(:amount)
-expenses = bank_account.transactions.expense.sum(:amount)
-
-bank_account.update!(amount: incomes - expenses)

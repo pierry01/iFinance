@@ -6,7 +6,7 @@ class GraphqlController < ApplicationController
   rescue StandardError => error
     raise error unless Rails.env.development?
 
-    handle_error_in_development(e)
+    handle_error_in_development(error)
   end
 
   private
@@ -38,7 +38,7 @@ class GraphqlController < ApplicationController
     end
   end
 
-  def handle_error_in_development(e)
+  def handle_error_in_development(error)
     logger.error(e.message)
     logger.error(e.backtrace.join("\n"))
 

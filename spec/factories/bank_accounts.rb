@@ -5,7 +5,6 @@ FactoryBot.define do
     user
 
     name { "name" }
-    amount { 1.5 }
     description { "description" }
   end
 end
