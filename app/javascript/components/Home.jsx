@@ -47,7 +47,7 @@ function Home() {
 
       <p>User: {user.email}</p>
 
-      <ul className="mt-2">
+      <ul className="mt-4 flex flex-row flex-wrap items-center gap-4">
         {user.bankAccounts.map((bankAccount) => (
           <BankAccount key={bankAccount.id} bankAccount={bankAccount} />
         ))}

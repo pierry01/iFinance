@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 function BankAccount({ bankAccount }) {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
-    <div className="mb-4 rounded-md border bg-gray-200 p-4">
-      <h1>BankAccount</h1>
+    <>
+      <div className="mb-4 rounded-md border bg-gray-200 p-4">
+        <div className="flex flex-row items-center gap-4">
+          <img
+            alt="BankAccount LOGO"
+            className="h-10 w-10 rounded-full"
+            src="https://i.pinimg.com/280x280_RS/cb/b2/80/cbb280fa8c687cf3b137df878bf82d08.jpg"
+          />
 
-      <p>{bankAccount.name}</p>
-      <p>{bankAccount.amount}</p>
-      <p>{bankAccount.description}</p>
+          <p>{bankAccount.name}</p>
 
-      <h1>Transactions</h1>
+          <button type="button">+</button>
+          <button type="button">*</button>
+          <button type="button">...</button>
+        </div>
 
-      <ul>
-        {bankAccount.transactions.map((transaction) => (
-          <div key={transaction.id}>
-            <p>{transaction.done}</p>
-            <p>{transaction.kind}</p>
-            <p>{transaction.name}</p>
-            <p>{transaction.amount}</p>
-            <p>{transaction.description}</p>
-            <p>{transaction.due_date}</p>
-          </div>
-        ))}
-      </ul>
-    </div>
+        <p>Saldo: {bankAccount.amount}</p>
+        <p>Descrição: {bankAccount.description}</p>
+
+        <button type="button" onClick={() => setModalVisible(true)}>
+          Ver transações
+        </button>
+      </div>
+
+      {modalVisible ? (
+        <ul>
+          {bankAccount.transactions.map((transaction) => (
+            <div key={transaction.id}>
+              <p>{transaction.done}</p>
+              <p>{transaction.kind}</p>
+              <p>{transaction.name}</p>
+              <p>{transaction.amount}</p>
+              <p>{transaction.description}</p>
+              <p>{transaction.due_date}</p>
+            </div>
+          ))}
+        </ul>
+      ) : null}
+    </>
   );
 }
 
