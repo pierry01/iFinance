@@ -4,6 +4,8 @@ import { useNavigate } from "react-router";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
+import BankAccount from "components/bank_account/BankAccount";
+
 const QUERY = gql`
   query Home {
     user: userQuery {
@@ -47,23 +49,7 @@ function Home() {
 
       <ul className="mt-2">
         {user.bankAccounts.map((bankAccount) => (
-          <div key={bankAccount.id} className="my-2">
-            <p>BankAccount</p>
-            <p>{bankAccount.name}</p>
-            <p>{bankAccount.amount}</p>
-            <p>{bankAccount.description}</p>
-
-            <ul>
-              {bankAccount.transactions.map((transaction) => (
-                <div key={transaction.id} className="my-2">
-                  <p>Transaction</p>
-                  <p>{transaction.name}</p>
-                  <p>{transaction.amount}</p>
-                  <p>{transaction.kind}</p>
-                </div>
-              ))}
-            </ul>
-          </div>
+          <BankAccount key={bankAccount.id} bankAccount={bankAccount} />
         ))}
       </ul>
     </div>
