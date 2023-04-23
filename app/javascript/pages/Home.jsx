@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
-import BankAccount from "components/bank_account/BankAccount";
+import BankAccount from "components/BankAccount";
 
 const QUERY = gql`
   query Home {

@@ -291,4 +291,14 @@ type User {
   Último nome
   """
   lastName: String!
+
+  """
+  Lista de transações
+  """
+  transactions(
+    """
+    BankAccount ID
+    """
+    bankAccountId: ID!
+  ): [Transaction!]!
 }

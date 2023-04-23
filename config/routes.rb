@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   get "/login", to: "application#index", constraints: constraints
   get "/create-bank-account", to: "application#index", constraints: constraints
 
+  get "/:bankAccountId/transactions",
+      to: "application#index",
+      constraints: constraints
+
   return unless Rails.env.development?
 
   mount(GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql")

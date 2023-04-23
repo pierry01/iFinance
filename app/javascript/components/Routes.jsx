@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 
-import Home from "components/Home";
-import NetworkError from "components/NetworkError";
-import NoMatch from "components/NoMatch";
-import Login from "components/login/Login";
-import CreateBankAccount from "components/bank_account/CreateBankAccount";
+import Home from "pages/Home";
+import Transactions from "pages/Transactions";
+import NetworkError from "pages/NetworkError";
+import NoMatch from "pages/NoMatch";
+import Login from "pages/Login";
+import CreateBankAccount from "pages/CreateBankAccount";
 
 import auth from "config/auth";
 
@@ -18,8 +19,10 @@ function Router() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="create-bank-account" element={<CreateBankAccount />} />
       <Route path="login" element={<Login />} />
+      <Route path=":bankAccountId/transactions" element={<Transactions />} />
+      <Route path="create-bank-account" element={<CreateBankAccount />} />
+
       <Route path="network-error" element={<NetworkError />} />
       <Route path="*" element={<NoMatch />} />
     </Routes>

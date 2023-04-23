@@ -19,5 +19,17 @@ module Types
     field :full_name, String, "Nome completo", null: false
     field :id, ID, "ID", null: false
     field :last_name, String, "Último nome", null: false
+    field :transactions,
+          [Types::TransactionType],
+          "Lista de transações",
+          null: false do
+      argument :bank_account_id, ID, "BankAccount ID", required: true
+    end
+
+    def transactions(bank_account_id:)
+      bank_account = object.bank_accounts.find(bank_account_id)
+
+      bank_account.transactions
+    end
   end
 end
