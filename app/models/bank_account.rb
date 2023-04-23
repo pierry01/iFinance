@@ -7,7 +7,15 @@ class BankAccount < ApplicationRecord
 
   validates :name, :description, presence: true
 
+  def sum_of_expenses
+    transactions.where(kind: Transaction::EXPENSE).sum(:amount)
+  end
+
+  def sum_of_incomes
+    transactions.where(kind: Transaction::INCOME).sum(:amount)
+  end
+
   def amount
-    transactions.income.sum(:amount) - transactions.expense.sum(:amount)
+    sum_of_incomes - sum_of_expenses
   end
 end

@@ -48,11 +48,6 @@ Input for BankAccount
 """
 input BankAccountInput {
   """
-  Amount
-  """
-  amount: Float!
-
-  """
   Description
   """
   description: String!

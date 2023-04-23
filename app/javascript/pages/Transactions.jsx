@@ -25,7 +25,11 @@ const QUERY = gql`
 
 function Transactions() {
   const { bankAccountId } = useParams();
-  const { loading, data } = useQuery(QUERY, { variables: { bankAccountId } });
+
+  const { loading, data } = useQuery(QUERY, {
+    fetchPolicy: "network-only",
+    variables: { bankAccountId },
+  });
 
   if (loading) return "CARREGANDO...";
 

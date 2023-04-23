@@ -21,13 +21,5 @@ module Types
           "Lista de transações",
           null: false
     field :user, Types::UserType, "User", null: false
-
-    def sum_of_expenses
-      object.transactions.where(kind: "EXPENSE").sum(:amount)
-    end
-
-    def sum_of_incomes
-      object.transactions.where(kind: "INCOME").sum(:amount)
-    end
   end
 end
