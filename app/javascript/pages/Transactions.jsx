@@ -59,8 +59,6 @@ function Transactions() {
       </div>
     </div>
   );
-
-  // return
 }
 
 export default Transactions;
