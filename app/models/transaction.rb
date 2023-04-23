@@ -10,5 +10,5 @@ class Transaction < ApplicationRecord
   belongs_to :bank_account
 
   validates :kind, :name, :amount, :description, presence: true
-  validates :kind, inclusion: KINDS
+  validates :kind, inclusion: ALL_KINDS
 end
