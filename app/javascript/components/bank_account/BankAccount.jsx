@@ -22,6 +22,8 @@ function BankAccount({ bankAccount }) {
         </div>
 
         <p>Saldo: {bankAccount.amount}</p>
+        <p>Soma das receitas: {bankAccount.sumOfIncomes}</p>
+        <p>Soma das despesas: {bankAccount.sumOfExpenses}</p>
         <p>Descrição: {bankAccount.description}</p>
 
         <button type="button" onClick={() => setModalVisible(true)}>
@@ -51,6 +53,7 @@ BankAccount.propTypes = {
   bankAccount: PropTypes.shape({
     name: PropTypes.string,
     amount: PropTypes.number,
+    sumOfExpenses: PropTypes.number,
     description: PropTypes.string,
     transactions: PropTypes.arrayOf(
       PropTypes.shape({

@@ -23,6 +23,11 @@ type BankAccount {
   name: String!
 
   """
+  Soma das despesas
+  """
+  sumOfExpenses: Float!
+
+  """
   Lista de transações
   """
   transactions: [Transaction!]!
