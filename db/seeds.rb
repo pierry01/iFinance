@@ -6,6 +6,6 @@ bank_account = FactoryBot.create(:bank_account, user:)
     :transaction,
     bank_account:,
     amount: rand(1..1000),
-    kind: %w[INCOME EXPENSE].sample
+    kind: [Transaction::INCOME, Transaction::EXPENSE].sample
   )
 end

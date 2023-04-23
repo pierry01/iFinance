@@ -53,8 +53,9 @@ BankAccount.propTypes = {
   bankAccount: PropTypes.shape({
     name: PropTypes.string,
     amount: PropTypes.number,
-    sumOfExpenses: PropTypes.number,
     description: PropTypes.string,
+    sumOfIncomes: PropTypes.number,
+    sumOfExpenses: PropTypes.number,
     transactions: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
@@ -62,8 +63,8 @@ BankAccount.propTypes = {
         kind: PropTypes.string,
         name: PropTypes.string,
         amount: PropTypes.number,
-        description: PropTypes.string,
         due_date: PropTypes.string,
+        description: PropTypes.string,
       })
     ),
   }).isRequired,

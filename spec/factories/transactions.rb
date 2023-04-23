@@ -4,11 +4,11 @@ FactoryBot.define do
   factory :transaction do
     bank_account
 
-    kind { "kind" }
     name { "name" }
     done { false }
     amount { 1.5 }
     due_date { "due_date" }
+    kind { Transaction::INCOME }
     description { "description" }
   end
 end
